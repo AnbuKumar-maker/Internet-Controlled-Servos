@@ -1,0 +1,26 @@
+#include <BlynkSimpleEsp8266.h>
+char ssid [] = "YOUR SSID";
+char pass [] = "YOUR PASSWORD";
+char auth [] = "YOUR AUTH TOKEN"; // Servo Control Project
+
+/* Reads slider in the Blynk app and writes the value to "potReading" variable */
+BLYNK_WRITE(V0) 
+{
+  potReading = param.asInt();
+}
+
+/* Display servo position on Blynk app */
+BLYNK_READ(V1) 
+{
+  Blynk.virtualWrite(V1, servo1Angle);
+}
+
+void setup () 
+{
+  Blynk.begin(auth, ssid, pass);
+}
+
+void loop() 
+{
+  Blynk.run();
+}
